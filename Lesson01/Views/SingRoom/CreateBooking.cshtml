@@ -1,0 +1,132 @@
+﻿@model SRBooking
+
+@{
+    Layout = "_SingRoom";
+
+    var HoursArray = new[]
+        {
+            new {value=1, text="One"},
+            new {value=2, text="Two"},
+            new {value=3, text="Three"}
+        };
+}
+
+<div class="container">
+    <form asp-controller="SingRoom" asp-action="CreateBooking">
+
+        <div class="row mb-2">
+            <div class="offset-sm-2 col-sm-3">
+                <h3>Make Booking</h3>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold" asp-for="CustName">Name :</label>
+            <div class="col-sm-5">
+                <input asp-for="CustName" class="form-control" />
+            </div>
+            <div class="col-sm-4 col-form-label">
+                <span asp-validation-for="CustName" class="text-danger"></span>
+            </div>
+        </div>
+
+        @{
+            // TODO L01 TASK 3b: Insert all the validation messages (asp-validation-for)
+            //                   for rest of the fields that require validataion
+        }
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold" asp-for="PkgTypeId">Package Type :</label>
+            <div class="col-sm-5">
+                <select class="form-select" asp-for="PkgTypeId"
+                        asp-items="@((SelectList)ViewData["PackageTypes"]!)">
+                    <option value="" selected="selected">-- SELECT --</option>
+                </select>
+            </div>
+
+            <!-- Validation Message -->
+            <span asp-validation-for="PkgTypeId" class="text-danger"></span>
+
+
+        </div>
+
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold" asp-for="BookingDate">Booking Date :</label>
+            <div class="col-sm-4">
+                <input asp-for="BookingDate"
+                       value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                       class="form-control" />
+            </div>
+
+            <!-- Validation Message -->
+            <span asp-validation-for="BookingDate" class="text-danger"></span>
+
+
+        </div>
+
+
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold" asp-for="SlotId">Slot :</label>
+            <div class="col-sm-4">
+@{
+/*
+                TODO L01 TASK 3d: Assign SelectList object from ViewData["Slots"] to asp-items
+
+                <select class="form-select"
+                asp-for="SlotId">
+                asp-items="________________________">
+*/
+}
+                <select class="form-select"
+                        asp-for="SlotId">
+
+                    <option value="" selected="selected">-- SELECT --</option>
+
+                </select>
+            </div>
+
+            <!-- Validation Message -->
+            <span asp-validation-for="SlotId" class="text-danger"></span>
+
+
+        </div>
+
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold" asp-for="Duration">Duration (Hours) :</label>
+            <div class="col-sm-4 pt-2">
+                @foreach (var item in HoursArray)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Duration" value="@item.value">
+                        <label class="form-check-label" asp-for="Duration">@item.text</label>
+                    </div>
+                }
+            </div>
+
+            <!-- Validation Message -->
+            <span asp-validation-for="Duration" class="text-danger"></span>
+
+
+        </div>
+
+        <div class="row mb-2">
+            <label class="col-sm-2 col-form-label fw-bold">Add On :</label>
+            <div class="col-sm-4 pt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" asp-for="AOSnack">
+                    <label class="form-check-label" asp-for="AOSnack">Snack</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" asp-for="AODrink">
+                    <label class="form-check-label" asp-for="AODrink">Drink</label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="offset-sm-2 col-sm-6">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
+    </form>
+</div>

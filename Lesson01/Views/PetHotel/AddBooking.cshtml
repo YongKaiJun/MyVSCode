@@ -1,0 +1,130 @@
+﻿@model Booking
+
+@{
+    var FFreqArray = new[]
+        {
+           new { value=0, text="Once"},
+           new { value=1, text="Twice"},
+           new { value=2, text="Free"}
+        };
+
+
+    // TODO L01 TASK 5c: Complete this View with client-side validation. 
+    //                   Refer to the code in Views/SingRoom/CreateBooking.cshtml.
+
+}
+
+<form asp-controller="___________" asp-action="___________">
+
+    <div class="row mb-2">
+        <div class="offset-sm-2 col-sm-3">
+            <h3>Make Booking</h3>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="NRIC">NRIC : </label>
+        <div class="col-sm-5">
+
+        </div>
+
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="OwnerName">Owner Name : </label>
+        <div class="col-sm-5">
+
+        </div>
+
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="PetName">Pet Name : </label>
+        <div class="col-sm-5">
+
+        </div>
+
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="PetTypeId">Pet Type : </label>
+        <div class="col-sm-5">
+
+        </div>
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="CheckInDate">Check-in Date : </label>
+        <div class="col-sm-5">
+
+        </div>
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="Duration">Duration (1-5 days) : </label>
+        <div class="col-sm-5">
+
+        </div>
+
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold" asp-for="FeedFreq">Feeding Frequency : </label>
+        <div class="col-sm-3 pt-2">
+            @foreach (var item in FFreqArray)
+            {
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="FeedFreq" value="@item.value">
+                    <label class="form-check-label" asp-for="FeedFreq">@item.text</label>
+                </div>
+            }
+        </div>
+        <div class="col-sm-3 col-form-label">
+
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-sm-2 col-form-label fw-bold">Food Type(s) : </label>
+        <div class="col-sm-3 pt-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" asp-for="FTCanned">
+                <label class="form-check-label" asp-for="FTCanned">Canned</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" asp-for="FTDry">
+                <label class="form-check-label" asp-for="FTDry">Dry</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" asp-for="FTSoft">
+                <label class="form-check-label" asp-for="FTSoft">Soft</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="offset-sm-2 col-sm-6">
+
+        </div>
+    </div>
+</form>
+
+

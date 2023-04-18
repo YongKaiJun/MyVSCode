@@ -1,0 +1,25 @@
+﻿@model List<SRBooking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_SingRoom";
+}
+
+<h3>All Bookings</h3>
+<span style="color:red">@TempData["Msg"]</span>
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <tr>
+        <th scope="col" width="20%">Booking ID</th>
+        <th scope="col" width="40%">Customer</th>
+        <th scope="col" width="40%">Booking Date</th>
+    </tr>
+    @foreach (SRBooking b in Model!)
+    {
+        <tr scope="row">
+            <td width="20%">@b.Id</td>
+            <td width="40%">@b.CustName</td>
+            <td width="40%">@string.Format("{0:dd-MM-yyyy}", b.BookingDate)</td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,51 @@
+﻿@model List<Booking>
+
+@{
+    ViewBag.Title = "View Bookings by Pet Types";
+
+    List<dynamic> lstPetTypes = (List<dynamic>)ViewData["PetTypes"]!;
+}
+
+@foreach (var p in lstPetTypes!)
+{
+    /*
+        TODO L01 TASK 5f: LINQ: Select all Booking for current PetTypeId 
+                                sorted by CheckInDate (DESC) 
+                                   and by PetName (ASC)
+    */
+    List<Booking> data =
+        Model; // this line needs to be modified
+
+    if (data.Count > 0)
+    {
+        <div class="card mb-2 pb-2">
+            <div class="text-center my-2">
+                <span class="fs-4 align-middle">@p.PetDesc</span>
+                <img src="~/images/pethotel/pettype@(p.Id).png" height="40px" />
+            </div>
+            <div class="card-body px-2 py-0">
+                <table class="table table-bordered table-condensed table-hover table-striped m-0">
+                    <tr>
+                        <th scope="col" width="25%">Check-In Date</th>
+                        <th scope="col" width="25%">Booking ID</th>
+                        <th scope="col" width="25%">Pet Name</th>
+                        <th scope="col" width="25%">Owner Name</th>
+                    </tr>
+                    @foreach (Booking b in data)
+                    {
+                        <tr scope="row">
+                            <td width="25%">@string.Format("{0:dd-MM-yyyy}", b.CheckInDate)</td>
+                            <td width="25%">@b.Id</td>
+                            <td width="25%">@b.PetName</td>
+                            <td width="25%">@b.OwnerName</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+}
+
+
+
+
